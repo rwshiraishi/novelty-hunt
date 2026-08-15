@@ -42,6 +42,14 @@ Boden's combinational/exploratory moves made operational. Also useful: remove a 
 
 Regenerate as personas with different disciplines and incentives (e.g., a security engineer, a game designer, a logistics dispatcher, a poet). In full mode: separate subagents, and different model families when configured — cross-family generation adds genuine independence that persona text alone cannot.
 
+## Move 7 — Execution-trace mining (post-test, free candidates)
+
+When a Phase 3.5 execution test fails, read the code/artifact at the failure point and ask: what substrate would the correct behavior need, and what in this neighbourhood already half-provides it? The fix's neighbourhood often contains a candidate no prompting move produced (field-verified: the occlusion-floor traversal candidate came from investigating WHY a contrast floor missed non-text ink, not from any generator). Candidates enter through the Phase 3 gates like all others.
+
+## Field-tameness check (after generation, before scoring)
+
+If every archived candidate is comfortably implementable in the current codebase within a quarter, the field never tested the tail: shared unexamined premises are likely, and the anti-novelty diagnostic cannot fire. Ask an adversary "name one credible approach absent from ALL candidates" and list the premises every candidate shares — in the recorded run that question surfaced both the shared premises and the eventual winner.
+
 ## Archive mechanics
 
 - Grid = the Phase-1 axes. A candidate enters the archive by occupying an empty cell, or by beating the incumbent of its cell **on that cell's own terms** (not on general quality — quality selection is novelty selection's enemy, r = −0.27 to −0.48).

@@ -18,6 +18,7 @@ Six phases, lightweight by default:
 - **Phase 1**: name the structural axes solutions can differ on. These form the archive grid.
 - **Phase 2**: search rounds using validated diversity moves: verbalized sampling with explicit low-probability-tail requests (1.6 to 2.1x measured diversity gain), in-context regeneration, atypical injection, inversion, distant analogy, persona shifts. Candidates are archived best-per-cell so novel ones cannot be crowded out by a quality filter. Rounds stop when nothing new appears.
 - **Phase 3**: cheap gates before any scoring. Sense first (91% of maximally-rare output is junk), then distance-from-core, then degeneracy. A gate is not a rating.
+- **Phase 3.5**: cheap execution tests, run before any judge scores anything. At minimum the top conventional candidate and the top-novelty candidate get tested against the real artifact. In the first field run this phase overturned both favorites at zero API cost, and a test failure is itself a generator: reading the code at the failure point surfaced a candidate no prompting move produced.
 - **Phase 4**: scoring. Novelty is judged holistically after a forced "what exactly is original here" analysis; effectiveness is judged by the decomposed Phase 0 anchors. Separate passes, because LLM judges collapse any multi-dimension rubric into one latent score (inter-dimension r = .92 to .99). Batch-relative, blind, multiple-valid-solutions framing, persona repeats with dispersion reporting, gate-then-sum and never multiply.
 - **Phase 5**: three named picks. **Best Conventional** (top of the core), **Frontier** (novel and effective and atypical, usually the answer), and a **Wildcard** that is never auto-dropped, because judges are structurally blind to the transformative tail. Each pick carries the deliverable in the form you asked for.
 
@@ -30,10 +31,22 @@ SKILL.md                          the skill: calibration, phases, output contrac
 references/generation-moves.md    search playbook with prompt templates
 references/scoring-protocol.md    judge blocks, panel design, bias counters
 references/evidence.md            every constant above, with citations
+references/lessons.md             the run ledger: field-tested rules and open questions
 references/research/              the 17 underlying deep-research reports
 ```
 
 The evidence file is the part most repos skip. Every rule in the skill maps to a measured number, and open questions are listed as UNANSWERED instead of being filled with invented constants.
+
+## Field-tested, and it rewrites itself
+
+The skill carries a self-improvement loop. After every full run it appraises its own mechanisms, including the ones that produced nothing, and appends the results to `references/lessons.md`. A lesson seen once is a CANDIDATE; confirmed twice, or once with an airtight causal chain, it gets promoted into the skill files with a date stamp; contradicted later, it gets demoted with the counter-evidence recorded instead of deleted. Guardrails: anti-bias and verification rules can only tighten, and every rule must cite the run that earned it.
+
+The first full field run (2026-08-14) produced nine promoted lessons. The headlines:
+
+- **Execution tests beat judges, twice in one run.** A five-minute test killed the conventional favorite before scoring, and a second test falsified the naive form of the top-novelty candidate. That promoted execution testing from a delivery-phase footnote to its own pre-scoring phase.
+- **A same-model persona panel is one judge with three voices.** Three personas produced zero disputes across 20 candidates while their unanimous number one rested on a premise a single grep disproved. The skill now says so in its own output, feeds judges the raw generator text instead of one author's summary, and requires a judge to verify any checkable factual claim against the artifact with a real command.
+- **The panel ranking is a hypothesis, not a result.** In three consecutive recorded runs, the scored winner did not survive adversarial review unchanged. The ranking now goes to a red team before it goes to you, and under a fixed budget the panel is the first thing cut, never the generators, the execution tests, or the red team.
+- **Generation is the strongest phase.** Four generators with disjoint moves and no visibility into each other turned 33 candidates into 20 functionally distinct classes, with four-way independent convergence on the class that mattered. That part of the skill earned its keep unchanged.
 
 ## Installation
 
