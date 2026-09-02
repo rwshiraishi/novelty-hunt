@@ -22,25 +22,25 @@ Aligned models are mode-collapsed. Preference tuning sharpens output toward the 
 
 Judges are biased against the thing you asked for. Selecting on quality is selecting against novelty (r = −0.27 to −0.48 between novelty and capability benchmarks). Zero-shot LLM judging of originality agrees with experts at roughly chance (Cohen's kappa 0.02 to 0.04). LLM judges rate AI-typical polish up and semantic surprise down, the exact inversion of expert judgment.
 
-Novelty-hunt answers both with structure rather than better prompts. It protects originality structurally — through the archive that preserves diverse candidates — rather than through a scoring step. And it scores honestly by demanding separate passes for novelty and effectiveness, multiple personas with raw input rather than digested summaries, and code-verifying judges for checkable claims.
+Novelty-hunt answers both with structure rather than better prompts. It protects originality structurally, through the archive that preserves diverse candidates, rather than through a scoring step. And it scores honestly by demanding separate passes for novelty and effectiveness, multiple personas with raw input rather than digested summaries, and code-verifying judges for checkable claims.
 
 ## How it works
 
 Six phases, lightweight by default.
 
-**Phase 0 — Frame the conventional core.** Before generating anything original, plainly generate 2 to 4 obvious answers a competent practitioner would give. These form the reference set that novelty gets measured against. Freeze the effectiveness gate here, before searching. The gate is only as good as the evidence frozen into it; anchored questions written after seeing candidates become rationalizations.
+**Phase 0: Frame the conventional core.** Before generating anything original, plainly generate 2 to 4 obvious answers a competent practitioner would give. These form the reference set that novelty gets measured against. Freeze the effectiveness gate here, before searching. The gate is only as good as the evidence frozen into it; anchored questions written after seeing candidates become rationalizations.
 
-**Phase 1 — Map the axes.** Name 3 to 6 structural axes along which solutions could differ. These form the archive grid; with several axes, most candidates land in fresh cells and the grid records where they differ.
+**Phase 1: Map the axes.** Name 3 to 6 structural axes along which solutions could differ. These form the archive grid; with several axes, most candidates land in fresh cells and the grid records where they differ.
 
-**Phase 2 — Search the hunt.** Run rounds of generation moves — verbalized sampling (1.6 to 2.1x measured diversity gain), in-context regeneration, atypical injection, inversion, distant analogy, persona shifts — archiving best candidate per grid cell. Rounds stop when nothing new appears. Disjoint generators in full mode mean no generator sees another's output; convergence on the same class by independent generators is itself a quality signal.
+**Phase 2: Search the hunt.** Run rounds of generation moves: verbalized sampling (1.6 to 2.1x measured diversity gain), in-context regeneration, atypical injection, inversion, distant analogy, persona shifts, archiving best candidate per grid cell. Rounds stop when nothing new appears. Disjoint generators in full mode mean no generator sees another's output; convergence on the same class by independent generators is itself a quality signal.
 
-**Phase 3 — Gate.** Cheap pass-fail on every candidate in order: sense (91% of maximally-rare output is junk), core-distance (actually distinct from every CORE item), degenerate (no mechanism, just a label). Failures die here. Nothing in this phase scores novelty; a gate is not a rating.
+**Phase 3: Gate.** Cheap pass-fail on every candidate in order: sense (91% of maximally-rare output is junk), core-distance (actually distinct from every CORE item), degenerate (no mechanism, just a label). Failures die here. Nothing in this phase scores novelty; a gate is not a rating.
 
-**Phase 3.5 — Execution tests.** Run cheap tests on the top conventional and top-novelty candidates before any scoring. Proposal-stage advantages reverse under execution: in recorded runs, execution tests overturned both odds-on favorites at zero API cost, and a test failure itself is a generator — reading the code at the failure point surfaces candidates no prompting move produced.
+**Phase 3.5: Execution tests.** Run cheap tests on the top conventional and top-novelty candidates before any scoring. Proposal-stage advantages reverse under execution: in recorded runs, execution tests overturned both odds-on favorites at zero API cost, and a test failure itself is a generator: reading the code at the failure point surfaces candidates no prompting move produced.
 
-**Phase 4 — Score.** Novelty is judged holistically after a forced "what exactly is original here" analysis. Effectiveness is judged by the decomposed Phase 0 anchors. Separate passes, because LLM judges collapse any multi-dimension rubric into one latent score. Batch-relative, blind, "multiple valid solutions exist" framing, randomized order, code-verifying judge for checkable claims.
+**Phase 4: Score.** Novelty is judged holistically after a forced "what exactly is original here" analysis. Effectiveness is judged by the decomposed Phase 0 anchors. Separate passes, because LLM judges collapse any multi-dimension rubric into one latent score. Batch-relative, blind, "multiple valid solutions exist" framing, randomized order, code-verifying judge for checkable claims.
 
-**Phase 5 — Deliver.** Three named picks. Best Conventional (top of the core), Frontier (novel and effective and atypical), and Wildcard (highest novelty, never auto-dropped, because judges are structurally blind to the transformative tail). Each carries the deliverable in the form the user asked for.
+**Phase 5: Deliver.** Three named picks. Best Conventional (top of the core), Frontier (novel and effective and atypical), and Wildcard (highest novelty, never auto-dropped, because judges are structurally blind to the transformative tail). Each carries the deliverable in the form the user asked for.
 
 <p align="center">
 <picture>
