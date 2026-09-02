@@ -1,0 +1,12 @@
+flowchart TD
+    RUN["Run findings<br/>mechanism scorecard<br/>cost and evidence"]
+    UNA["UNANSWERED<br/>known gap<br/>not yet testable"]
+    CAND["CANDIDATE<br/>one observation<br/>or unconfirmed mechanism"]
+    PROM["PROMOTED<br/>two confirmations OR<br/>one airtight causal chain<br/>lands in SKILL.md · date-stamped · gated by lint"]
+    DEM["DEMOTED<br/>counter-evidence<br/>old rule is reverted<br/>evidence kept, never silently deleted"]
+
+    RUN -- "new finding" --> CAND
+    RUN -- "open question" --> UNA
+    UNA -- "settled in a run" --> CAND
+    CAND -- "confirmed<br/>in 2nd run or<br/>airtight chain" --> PROM
+    PROM -- "contradicted<br/>in later run" --> DEM

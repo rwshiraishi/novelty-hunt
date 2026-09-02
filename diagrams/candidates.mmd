@@ -1,0 +1,19 @@
+flowchart TD
+    CORE["Phase 0: Conventional core<br/>2-4 obvious answers<br/>CORE-1, CORE-2, ..."]
+    SEARCH["Phase 2: Search rounds<br/>Disjoint generation moves<br/>archive by grid cell"]
+    RAW["Raw candidates<br/>21 per run typical"]
+    CLASSES["Equivalence classes<br/>after dedup<br/>~16 per run"]
+    GATE["Phase 3: Gates<br/>Sense · Core-distance · Degenerate"]
+    SURVIVORS["Survivors<br/>ready to score"]
+    EXEC["Phase 3.5: Execution tests<br/>on top core and top-novelty"]
+    SCORE["Phase 4: Scoring<br/>Novelty · Effectiveness"]
+    PICKS["Phase 5: Three picks<br/>Best Conventional<br/>Frontier<br/>Wildcard"]
+
+    CORE --> SEARCH
+    SEARCH --> RAW
+    RAW --> CLASSES
+    CLASSES --> GATE
+    GATE -- "failures drop" --> SURVIVORS
+    SURVIVORS --> EXEC
+    EXEC -- "results rewrite bar" --> SCORE
+    SCORE --> PICKS
