@@ -108,3 +108,81 @@ praised is not being evaluated.
 - **U-N3**: Is one code-verifying judge sufficient replacement for the 3-persona
   panel (L-N8), or does the panel's qualitative analysis pay for itself? Needs a
   run with both configurations on comparable problems.
+
+## Run 2026-08-18 — DataSculpt, "density is an undeclared channel"
+
+Full mode, invoked as the remedy after a solution-tournament crossbreed round hit
+its PLATEAU rule (no offspring beat the parents). 3 generator subagents on
+disjoint moves; 21 raw candidates, ~16 equivalence classes. Scoring panel SKIPPED
+by deliberate budget allocation (see L-N8 note below).
+
+### Per-mechanism scorecard
+- **Move 6 lens/persona shift — highest yield of the run.** 6 personas, 6
+  distinct archived classes, no merges within the set. The signal-processing
+  persona produced the candidate that became the decisive execution test; the
+  cartographer, security engineer and survey statistician each produced a live
+  candidate that reached the final picks or the roster.
+- **Move 1 verbalized sampling — the tail beat the head.** The p=0.30 head
+  candidate (perceptual blur field) did not reach the picks; the p=0.14
+  (renderer writes its own disclosure caption) and p=0.05 (field-primary
+  rendering) did — the latter as the Wildcard. The probability labels did their
+  job of licensing the tail.
+- **Move 5 distant analogy — produced 5 classes, 2 of which converged with other
+  generators** (cryptographic differential leakage testing ≡ the signal
+  engineer's perturbation certificate; survey-statistics Horvitz-Thompson ≡ the
+  survey persona's, independently).
+- **Move 3 atypical injection — weakest of the four used.** 3 candidates
+  (halftone error diffusion into CORE-1, units-typing into CORE-2, SPC control
+  limits into CORE-3); none reached the picks, and the error-diffusion one was
+  gated out by the execution result for flattening a true signal. Recorded
+  because a mechanism only ever praised is not being evaluated.
+- **Phase 3.5 execution test — decisive, third consecutive confirmation.**
+
+### Findings
+
+## L-N1 — execution-tests-before-scoring — PROMOTED (3rd confirmation)
+- **New evidence**: Run 2026-08-18. A 4-render perturbation test (~80s, $0)
+  measured the wind map's density field under a rescaled sampler and a changed
+  RNG phase: r = 0.9972 / 0.9938 / 0.9964 against the shipped render, same
+  hottest bin at the same amplitude. This OVERTURNED the conventional favorite
+  (every flattening approach, incl. the one the agent had recommended to the
+  user, would delete a true data channel) AND wounded the top-novelty candidate
+  (Horvitz-Thompson reweighting exists to correct a sampler that biases the
+  picture; the test showed the sampler does not bias this picture). The exact
+  recorded pattern — both poles moved, before any score existed. Now 3/3.
+
+## L-N11 — cross-generator-convergence-is-a-quality-signal — CANDIDATE
+- **Rule (proposed)**: record, per archived class, how many INDEPENDENT
+  generators produced it; treat multi-generator convergence as evidence the class
+  is load-bearing, and single-generator classes as the true tail.
+- **Evidence**: Run 2026-08-18. Generators never saw each other's output. Four
+  classes were produced independently 2-3×: perturbation/differential testing
+  (signal-processing persona + cryptography analogy); mutual-information leak
+  measurement in bits (security persona + verbalized-sampling tail); Horvitz-
+  Thompson inclusion-probability reweighting (survey persona + survey-statistics
+  analogy); perceptual filtering (psychophysics persona + audio-mastering analogy
+  + sampling tail). The convergent class that got executed was decisive; the
+  convergence was visible BEFORE the test and would have ranked it first for
+  testing. The skill currently has no field for this.
+
+## L-N8 — budget-goes-to-generators-tests-redteam — CANDIDATE (unchanged; NOT confirmed)
+- **This run cannot confirm it.** The panel was skipped, so there is no
+  panel-vs-no-panel comparison from this run — only the observation that
+  generation plus one execution test produced a decision the user acted on.
+  Recorded explicitly so absence of a panel is not later miscounted as evidence
+  the panel is dispensable.
+
+## L-N10 — background-spawn-reports-fail — PROMOTED (further confirmation)
+- **New evidence**: Run 2026-08-18, 6/6 background-spawned subagents (1 skeptic,
+  4 scorers, 1 abbreviated skeptic) plus 3/3 generators went idle without
+  delivering in-band; harvest_agent_tail.py retrieved all 9. Now 13/13 recorded.
+
+### Interop
+First recorded instance of tournament→hunt escalation: the tournament's plateau
+rule detected field exhaustion and the hunt supplied the winner. The handoff
+worked because the hunt's prompt named and BARRED the premise every tournament
+candidate shared. Recommend the tournament's field-ceiling remedy always pass the
+shared premise, not only the candidate list.
+
+### Cost
+3 generator calls + 1 execution test (~80s compute, $0) + 1 red-team. Panel: 0.
