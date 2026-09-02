@@ -3,7 +3,7 @@
 **Find genuinely original candidates while protecting them from the quality filter that normally kills them.** One measured finding at a time: every rule traces to a measured constant, and open questions stay listed as UNANSWERED rather than filled with invented numbers.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Lessons on the books](https://img.shields.io/badge/lessons-11%20%287%20promoted%29-8a5cf6.svg)](references/lessons.md)
+[![Lessons on the books](https://img.shields.io/badge/lessons-11%20%289%20promoted%29-8a5cf6.svg)](references/lessons.md)
 [![Runtime](https://img.shields.io/badge/runtime-markdown%20%2B%20bash-lightgrey.svg)](#requirements)
 [![Made by Neon Peach, LLC](https://img.shields.io/badge/made%20by-Neon%20Peach%2C%20LLC-ff8c69.svg)](https://neonpeach.co)
 
