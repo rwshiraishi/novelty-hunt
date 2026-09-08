@@ -1,11 +1,11 @@
 ---
 name: novelty-hunt
-description: Searches a solution/idea space for truly unique, original candidates and scores them with a bias-controlled novelty-and-effectiveness protocol grounded in the creativity-measurement literature. Use when the user wants "truly unique ideas", "original solutions", "something nobody's tried", "think outside the box", "unconventional options", "creative alternatives", or when conventional approaches have failed and the obvious field feels exhausted. Domain-agnostic - technical designs, product/business ideas, naming, and creative text. For scoring competing implementations for production quality, see solution-tournament; for direction/go-no-go decisions, see council; for visual variants, see design-shotgun.
+description: Explore functionally distinct ideas and compare originality with usefulness, delivering conventional, frontier, and wildcard picks. Use for original product concepts, naming, positioning, creative text, or technical alternatives when familiar answers are insufficient. Originality is relative to a stated baseline, not a claim of worldwide uniqueness.
 ---
 
 # Novelty Hunt
 
-Find genuinely original candidates, protect them from the quality filter that normally kills them, and score them honestly. Every mechanism here is backed by a measured result; the constants and citations live in `references/evidence.md`.
+Explore original candidates, preserve meaningful alternatives, and deliver useful picks. The workflow draws on creativity research and recorded runs; study results inform the method but do not establish its effectiveness across every domain. Constants and citations live in `references/evidence.md`.
 
 ## Calibration (read first, always)
 
@@ -48,7 +48,7 @@ Run rounds of the generation moves; archive by grid cell, best candidate per cel
 
 **Dedup rule**: two candidates are the same idea if a user who saw one would not benefit from the other. Merge them; wording differences are not distinctness.
 
-**Stop rule (loop-until-dry)**: stop when a full round adds no new grid cell and no new equivalence class - lightweight: 1 dry round; full: 2.
+**Stop rule (loop-until-dry)**: stop when a full round adds no new grid cell and no new equivalence class - lightweight: 1 dry round; full: 2. Lightweight also stops after two search rounds. For full mode, state a round or resource budget before generation and stop at that limit even if new ideas remain; report unexplored directions instead of silently extending the hunt.
 
 ## Phase 3 - Gate (before any scoring)
 
@@ -107,7 +107,7 @@ Lightweight caveat (if applicable): spread is injected variance, not independent
 
 Rules for the picks:
 - Each pick carries the **deliverable in the form the user asked for** (the name + positioning line, the mechanism sketch, the draft copy) - not just the candidate label.
-- The **Wildcard is never dropped**. Judges are structurally blind to the tail (the most transformative candidates score as the least useful); routing it to the user with a cheap validation test is the only honest handling.
+- If no distinct candidate survives for a pick, mark that pick unavailable with the reason; do not invent a candidate or revive one that fails a hard constraint. A surviving **Wildcard is never dropped**. Judges are structurally blind to the tail (the most transformative candidates score as the least useful); routing it to the user with a cheap validation test is the only honest handling.
 - Execution tests already ran in Phase 3.5; the picks must cite their results. Any pick contradicting an execution result must say so and why.
 - **A panel ranking is a hypothesis, not a result.** When the hunt feeds an implementation decision, the ranking is not final until an adversarial pass (solution-tournament's red team, or an equivalent refutation-briefed agent) has attacked at least the top pick and the Wildcard. In every recorded run to date (3/3), the scored #1 did not survive adversarial review unchanged (lesson L-N2).
 - **Budget allocation, when constrained** (lesson L-N8): the measured value concentrates in the generation moves, the execution tests, and the adversarial pass. Cut the 3-persona panel to ONE code-verifying judge before cutting any of those three. The panel's durable contribution is its qualitative analysis, not the numbers.
@@ -115,13 +115,18 @@ Rules for the picks:
 
 ## Interop with solution-tournament
 
-When the hunt's output is a code/architecture implementation choice, hand the archive to `solution-tournament` as its Phase 1 field: frozen candidate texts (90-150 word mechanisms), named axes, hashes. Declare novelty as a weighted rubric dimension in the tournament's Phase 0 if originality should count there - never bolt it on after scoring. Conversely, when a tournament's red-team asks "name one credible approach absent from the field," run this skill's Phase 2 as the remedy.
+When the hunt informs an implementation decision, hand off the raw candidate texts, conventional core, structural axes, constraints, execution results, and the novelty/effectiveness comparison. Keep the original scores labeled as hunt scores.
 
-**Do not score the same field twice** (lesson L-N9): this skill's Phase 4 already performs the blind weighted scoring the tournament's middle phases specify. After a full hunt, enter the tournament at its ADVERSARIAL phases (skeptic, red team, spikes) with the hunt's archive and scores as the field — those phases are what the tournament uniquely contributes, and they are where the decision actually gets made.
+Choose the next step by the decision still needed:
+- **The user wants to challenge the hunt's recommendation:** reuse the archive for an adversarial review and targeted experiments. Do not call this a completed solution tournament or repeat scoring without a new decision need.
+- **The user requests a production-quality tournament:** start at the tournament's Phase 0, freeze its rubric, and reuse suitable hunt candidates as generation inputs. Novelty is a weighted dimension only if agreed before tournament scoring. Hunt ratings do not substitute for the tournament's different criteria or evidence requirements.
+- **A tournament needs a wider field:** use this skill's generation moves to find missing alternatives; let the tournament govern their admission and scoring.
+
+`solution-tournament` is optional. If it is unavailable, deliver the archive and explain the next review or experiment directly.
 
 ## Full-mode dispatch note (harness)
 
-Background-spawned generators and judges have gone idle without delivering in 4/4 recorded cases. Follow `~/.claude/rules/common/subagent-report-delivery.md`: prefer the Workflow tool (returns land in-process) or synchronous spawns; for background spawns, treat `harvest_agent_tail.py <name> --session <dir>` as the PRIMARY retrieval path, not a fallback, and check the filesystem for outputs before re-running anything.
+Use the host's available subagent tools and completion-report mechanism. Give each agent a bounded assignment and require a final result with candidate text or scoring evidence. For background work, record the agent identifier and output location; if a result is missing, request it once and inspect saved outputs before repeating work. Follow a local report-delivery guide if present, but do not require private paths or helper scripts that are not shipped with this skill. If independent dispatch is unavailable, state that limitation and use the lightweight workflow within the user's budget.
 
 ## Self-improvement loop
 
